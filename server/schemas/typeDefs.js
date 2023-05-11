@@ -6,7 +6,7 @@ const typeDefs = gql`
     username: String!
     email: String!
     password: String!
-    movies: [Movie]!
+    movies: [Movie]
   }
 
   type Movie {
@@ -19,6 +19,7 @@ const typeDefs = gql`
     director: String!
     actors: [String]!
     list: [String]!
+    user: User!
   }
 
   input UserInput {
@@ -37,22 +38,25 @@ const typeDefs = gql`
     actors: [String]!
   }
 
+  type Auth {
+    user: User!
+    token: String!
+  }
+
   type Query {
-    getUserById(id: ID!): User
-    getUserByUsername(username: String!): User
-    getAllMovies: [Movie]
-    getMoviesByTitle(title: String!): [Movie]
-    getMoviesByGenre(genre: String!): [Movie]
-    getMoviesByDirector(director: String!): [Movie]
+    movies: [Movie]!
+    movie(_id: ID!): Movie
+    users: [User]!
+    user(_id: ID!): User
+    me: User!
   }
 
   type Mutation {
-    addUser(userInput: UserInput!): User!
-    updateUser(id: ID!, userInput: UserInput!): User!
-    deleteUser(id: ID!): User!
     addMovie(movieInput: MovieInput!): Movie!
-    updateMovie(id: ID!, movieInput: MovieInput!): Movie!
-    deleteMovie(id: ID!): Movie!
+    updateMovie(_id: ID!, movieInput: MovieInput!): Movie!
+    deleteMovie(_id: ID!): Boolean!
+    addUser(userInput: UserInput!): Auth!
+    login(email: String!, password: String!): Auth!
   }
 `;
 

@@ -1,29 +1,15 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { useQuery } from '@apollo/client';
-import { QUERY_MATCHUPS } from '../utils/queries';
 
 const Home = () => {
-  const { loading, data } = useQuery(QUERY_MATCHUPS, {
-    fetchPolicy: "no-cache"
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
-
   return (
     <div>
-      <h1>My Movie List</h1>
-      <ul>
-        {data.movies.map(movie => (
-          <li key={movie.id}>
-            <Link to={`/movie/${movie.id}`}>
-              <img src={movie.poster} alt={movie.title} />
-              <p>{movie.title}</p>
-              <p>{movie.year}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <h1>Welcome to My Movie List!</h1>
+      <p>Please log in or register to start creating and managing your movie lists.</p>
+      <div>
+        <Link to="/login"><button>Login</button></Link>
+        <Link to="/register"><button>Register</button></Link>
+      </div>
     </div>
   );
 }
