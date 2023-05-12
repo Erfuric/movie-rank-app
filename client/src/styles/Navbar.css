@@ -3,8 +3,31 @@ Copy/paste code from tutorials for testing, to recreate later
 */
 
 .navbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
     background: #6a1b9a;
     height: 60px;
+    padding: 0 20px;
+  }
+  
+  .navbar__list {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .navbar__list li {
+    margin-right: 20px;
+  }
+  
+  .navbar__list li:last-child {
+    margin-right: 0;
   }
   
   .navbar a {
@@ -13,5 +36,22 @@ Copy/paste code from tutorials for testing, to recreate later
     text-decoration: none;
     margin: 5px;
     line-height: 3;
+  }
+  
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+      height: auto;
+    }
+  
+    .navbar__list {
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+    }
+  
+    .navbar__list li {
+      margin: 5px 0;
+    }
   }
   
