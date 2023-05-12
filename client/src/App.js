@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+
 import CreateList from './pages/CreateList';
 import Home from './pages/Home';
 import SearchUser from './pages/SearchUser';
@@ -22,7 +23,7 @@ function App() {
               path="/" 
               element={<Home />}
             />
-            <Route 
+            {/* <Route 
               path="/CreateList" 
               element={<CreateList />}
             />
@@ -37,7 +38,7 @@ function App() {
             <Route 
               path="ViewList"
               element={<ViewList />}
-            />
+            /> */}
           </Routes>
         </div>
       </Router>
