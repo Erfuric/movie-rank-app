@@ -36,22 +36,12 @@ function App() {
               path="/" 
               element={<Home />}
             />
-            {/* <Route 
-              path="/CreateList" 
-              element={<CreateList />}
-            />
-            <Route 
-              path="/SearchUser" 
-              element={<SearchUser />}
-            />
-            <Route 
-              path="User"
-              element={<User />}
-            />
-            <Route 
-              path="ViewList"
-              element={<ViewList />}
-            /> */}
+            <Route path="/create-list" element={<CreateList />} />
+            <Route path="/search-user" element={<SearchUser />} />
+            <Route path="/user" element={<User />} />
+            <Route path="/view-list" element={<ViewList />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
           </Routes>
         </div>
       </Router>
