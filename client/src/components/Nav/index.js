@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 function Nav() {
 
   function showNavigation() {
-    if (Auth.loggedIn()) {
+    if (Auth.isAuthenticated()) {
         return (
             <ul className="flex-row">
               <li className="mx-1">

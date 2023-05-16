@@ -1,4 +1,6 @@
+const { AuthenticationError } = require('apollo-server-express');
 const { User, Movie } = require('../models');
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
 	Query: {
@@ -73,34 +75,28 @@ const resolvers = {
 			throw new Error('You need to be logged in!');
 		},
 		// Mutation resolvers for users
-		addUser: async (parent, args) => {
-			const user = await User.create(args);
+		addUser: async (parent, { username, email, password }) => {
+			const user = await User.create({ username, email, password });
 			const token = signToken(user);
-			return {
-				user,
-				token
-			};
-		},
-		login: async (parent, {
-			email,
-			password
-		}) => {
-			const user = await User.findOne({
-				email
-			});
+			return { token, user };
+		  },
+		login: async (parent, { email, password }) => {
+			const user = await User.findOne({ email });
+	  
 			if (!user) {
-				throw new Error('Incorrect email or password!');
+			  throw new AuthenticationError('No user found with this email address');
 			}
+	  
 			const correctPw = await user.isCorrectPassword(password);
+	  
 			if (!correctPw) {
-				throw new Error('Incorrect email or password!');
+			  throw new AuthenticationError('Incorrect credentials');
 			}
+	  
 			const token = signToken(user);
-			return {
-				user,
-				token
-			};
-		},
+	  
+			return { token, user };
+		  },
 	}
 };
 
